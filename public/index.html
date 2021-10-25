@@ -10,13 +10,15 @@
 </head>
 
 <body>
-  <h1>What's the answer - Game</h1>
-  <h3 id="h3question">Elo</h3>
-  <button id="answer1"></button>
-  <button id="answer2"></button>
-  <button id="answer3"></button>
-  <button id="answer4"></button>
-  <h2>Poprawne odpowiedzi: <span id="good-answers">0</span></h2>
+  <div id="game-board">
+    <h1 id="gametitle">What's the answer - Game</h1>
+    <h3 id="h3question"></h3>
+    <button class="answer-btn" id="answer1" data-index="0"></button>
+    <button class="answer-btn" id="answer2" data-index="1"></button>
+    <button class="answer-btn" id="answer3" data-index="2"></button>
+    <button class="answer-btn" id="answer4" data-index="3"></button>
+    <h2>Correct Answers: <span id="good-answers">0</span></h2>
+  </div>
 
   <script src="script.js"></script>
 </body>

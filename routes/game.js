@@ -4,17 +4,23 @@ function gameRoute(app) {
 
   const questions = [
     {
-      question: "Jaki jest najlepszy język programowania na świecie wg mnie?",
-      answers: ["C++", "Fortran", "Java", "JavaScript"],
+      question:
+        "What is the best programming language in the world in my opinion?",
+      answers: ["C++", "Python", "Java", "JavaScript"],
       correctAnswer: 3,
     },
     {
-      question: "Czy programowanie jest fajne?",
-      answers: ["Tak średnio", "Nie sądze", "Może", "Uwielbiam programować!"],
+      question: "Is programming cool?",
+      answers: [
+        "Yes on average",
+        "I don't think so",
+        "Maybe",
+        "I love programming!",
+      ],
       correctAnswer: 3,
     },
     {
-      question: "Kto jest moim ulubionym piłkarzem?",
+      question: "Who's my favourite footbal player?",
       answers: [
         "Robert Lewandowski",
         "Neymar",
@@ -36,13 +42,34 @@ function gameRoute(app) {
       });
     } else {
       let nextQuestion = questions[goodAnswers];
-      const { question, answers } = nextQuestion;
+      let { question, answers } = nextQuestion;
 
       res.json({
         question,
         answers,
       });
     }
+  });
+
+  app.post("/getanswer/:index", (req, res) => {
+    let { index } = req.params;
+
+    let theQuestion = questions[goodAnswers];
+
+    let isAnswerGood = theQuestion.correctAnswer === Number(index);
+
+    if (isAnswerGood) {
+      goodAnswers++;
+    } else {
+      res.json({
+        loser: true,
+      });
+    }
+
+    res.json({
+      isAnswerGood,
+      goodAnswers,
+    });
   });
 }
 
