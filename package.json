@@ -1,0 +1,11 @@
+{
+  "name": "miniprojectwithexpress",
+  "version": "1.0.0",
+  "description": "mini project with express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskar Ners",
+  "license": "ISC"
+}
