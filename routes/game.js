@@ -111,7 +111,7 @@ function gameRoute(app) {
 
     res.json({
       isFiftyFiftyUsed,
-      text: "",
+      text: "Now you have only two answers to pick!",
     });
   });
 
@@ -159,11 +159,11 @@ function gameRoute(app) {
 
     let badAnswer = `${
       answers[Math.floor(Math.random() * (4 - 0) + 0)]
-    } - ${Math.floor(Math.random() * (50 - 30) + 30)}%`;
+    } - ${Math.floor(Math.random() * (50 - 39) + 39)}%`;
 
     res.json({
       isAudienceHelpUsed,
-      text: "",
+      text: "Do you think this is the correct answer?",
       response: whatIsTheAudienceAnswer
         ? `The answer most selected by the audience is: ${goodAnswer}`
         : `The answer most selected by the audience is: ${badAnswer}`,
