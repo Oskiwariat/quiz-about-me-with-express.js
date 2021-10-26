@@ -1,6 +1,8 @@
 let h3question = document.querySelector("#h3question");
 let goodAnswersCounter = document.querySelector("#good-answers");
 let gameBoardDiv = document.querySelector("#game-board");
+let fiftyFiftyButton = document.querySelector("#fiftyfifty");
+let lifeLinesDiv = document.querySelector("#lifelines");
 
 function setNextQuestion(data) {
   let { question, answers } = data;
@@ -27,6 +29,7 @@ showTheNextQuestion();
 function sendAnswer(data) {
   const { goodAnswers, isAnswerGood } = data;
   if (goodAnswers === 6) {
+    lifeLinesDiv.style.display = "none";
     gameBoardDiv.style.display = "none";
     let congratulationsMessage = document.createElement("h1");
     congratulationsMessage.className = "congratulationsmessage";
@@ -39,6 +42,7 @@ function sendAnswer(data) {
     goodAnswersCounter.innerText = goodAnswers;
     showTheNextQuestion();
   } else {
+    lifeLinesDiv.style.display = "none";
     gameBoardDiv.style.display = "none";
 
     let playAgainMessage = document.createElement("h1");
@@ -55,6 +59,7 @@ function sendAnswer(data) {
       playAgainMessage.style.display = "none";
       playAgainButton.style.display = "none";
       gameBoardDiv.style.display = "block";
+      lifeLinesDiv.style.display = "block";
     });
     document.body.appendChild(playAgainButton);
   }
@@ -77,3 +82,28 @@ for (const button of buttons) {
     handleAnswerButtonClick(answerButtonIndex);
   });
 }
+
+function fiftyFiftyButtonClick(data) {
+  const { isFiftyFiftyUsed } = data;
+  let buttons = document.querySelectorAll(".answer-btn");
+  buttons[0].innerText = "";
+  buttons[1].innerText = "";
+  fiftyFiftyButton.setAttribute("disabled", "true");
+  fiftyFiftyButton.style.opacity = "0";
+
+  if (isFiftyFiftyUsed) {
+    console.log("You use Fifty-fifty lifeline!");
+  }
+}
+
+function fiftyFiftyLifeLine() {
+  fetch("/help/fiftyfifty", {
+    method: "GET",
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      fiftyFiftyButtonClick(data);
+    });
+}
+
+fiftyFiftyButton.addEventListener("click", fiftyFiftyLifeLine);

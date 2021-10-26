@@ -1,6 +1,7 @@
 function gameRoute(app) {
   let goodAnswers = 0;
   let isGameOver = false;
+  let isFiftyFiftyUsed = false;
 
   const questions = [
     {
@@ -94,6 +95,20 @@ function gameRoute(app) {
     res.json({
       isAnswerGood,
       goodAnswers,
+    });
+  });
+
+  app.get("/help/fiftyfifty", (req, res) => {
+    if (isFiftyFiftyUsed) {
+      res.json({
+        text: "To koło ratunkowe zostało już użyte",
+        disabled: true,
+      });
+    }
+    isFiftyFiftyUsed = true;
+
+    res.json({
+      isFiftyFiftyUsed,
     });
   });
 }
