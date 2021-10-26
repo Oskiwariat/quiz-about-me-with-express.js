@@ -101,6 +101,7 @@ function fiftyFiftyButtonClick(data) {
     fiftyFiftyButton.style.opacity = "0";
   }
   console.log(text);
+  fiftyFiftyButton.style.opacity = "0.5";
 }
 
 function fiftyFiftyLifeLine() {
@@ -125,6 +126,7 @@ function friendCallButtonClick(data) {
     friendCallButton.style.opacity = "0";
   }
   console.log(text);
+  friendCallButton.style.opacity = "0.5";
 }
 
 function friendCallLifeLine() {
@@ -138,3 +140,29 @@ function friendCallLifeLine() {
 }
 
 friendCallButton.addEventListener("click", friendCallLifeLine);
+
+function audienceHelpButtonClick(data) {
+  const { isAudienceHelpUsed, text, response } = data;
+
+  if (isAudienceHelpUsed) {
+    console.log("You use Audience Help lifeline!");
+    console.log(response);
+    fiftyFiftyButton.style.opacity = "0";
+    audienceHelpButton.style.opacity = "0";
+    friendCallButton.style.opacity = "0";
+  }
+  console.log(text);
+  audienceHelpButton.style.opacity = "0.5";
+}
+
+function audienceHelpLifeLine() {
+  fetch("/help/audiencehelp", {
+    method: "GET",
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      audienceHelpButtonClick(data);
+    });
+}
+
+audienceHelpButton.addEventListener("click", audienceHelpLifeLine);

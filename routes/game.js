@@ -3,6 +3,7 @@ function gameRoute(app) {
   let isGameOver = false;
   let isFiftyFiftyUsed = false;
   let isFriendCallUsed = false;
+  let isAudienceHelpUsed = false;
 
   const questions = [
     {
@@ -102,7 +103,7 @@ function gameRoute(app) {
   app.get("/help/fiftyfifty", (req, res) => {
     if (isFiftyFiftyUsed) {
       res.json({
-        text: "To koło ratunkowe zostało już użyte",
+        text: "This lifeline is already used",
         fiftyButtonDisabled: true,
       });
     }
@@ -117,7 +118,7 @@ function gameRoute(app) {
   app.get("/help/friendcall", (req, res) => {
     if (isFriendCallUsed) {
       res.json({
-        text: "To koło ratunkowe zostało już użyte",
+        text: "This lifeline is already used",
         friendCallButtonDisabled: true,
       });
     }
@@ -132,8 +133,40 @@ function gameRoute(app) {
     res.json({
       isFriendCallUsed,
       text: doesFriendKnow
-        ? `Jestem w 100% pewien, że prawidłowa odpowiedź to ${answers[correctAnswer]}`
-        : "Hmm no nie wiem, niestety ci nie pomogę",
+        ? `I am 100% sure the correct answer is ${answers[correctAnswer]}`
+        : "Hmm, i don't know. Unfortunately i can't help you",
+    });
+  });
+
+  app.get("/help/audiencehelp", (req, res) => {
+    if (isAudienceHelpUsed) {
+      res.json({
+        text: "This lifeline is already used",
+        audienceHelpButtonDisabled: true,
+      });
+    }
+    isAudienceHelpUsed = true;
+
+    let question = questions[goodAnswers];
+
+    const { answers, correctAnswer } = question;
+
+    let whatIsTheAudienceAnswer = Math.random() > 0.5 ? true : false;
+
+    let goodAnswer = `${answers[correctAnswer]} - ${Math.floor(
+      Math.random() * (85 - 50) + 50
+    )}%`;
+
+    let badAnswer = `${
+      answers[Math.floor(Math.random() * (4 - 0) + 0)]
+    } - ${Math.floor(Math.random() * (50 - 30) + 30)}%`;
+
+    res.json({
+      isAudienceHelpUsed,
+      text: "",
+      response: whatIsTheAudienceAnswer
+        ? `The answer most selected by the audience is: ${goodAnswer}`
+        : `The answer most selected by the audience is: ${badAnswer}`,
     });
   });
 }
