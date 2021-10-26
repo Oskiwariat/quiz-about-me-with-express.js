@@ -6,18 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What's the answer?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div id="game-board">
-    <h1 id="gametitle">What's the answer - Game</h1>
+    <h1 id="gametitle">Quiz about me - Game</h1>
     <h3 id="h3question"></h3>
     <button class="answer-btn" id="answer1" data-index="0"></button>
     <button class="answer-btn" id="answer2" data-index="1"></button>
     <button class="answer-btn" id="answer3" data-index="2"></button>
     <button class="answer-btn" id="answer4" data-index="3"></button>
-    <h2>Correct Answers: <span id="good-answers">0</span></h2>
+    <h2 id="correct-answers">Correct Answers: <span id="good-answers">0</span></h2>
   </div>
 
   <script src="script.js"></script>

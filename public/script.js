@@ -26,7 +26,7 @@ showTheNextQuestion();
 
 function sendAnswer(data) {
   const { goodAnswers, isAnswerGood } = data;
-  if (goodAnswers === 3) {
+  if (goodAnswers === 6) {
     gameBoardDiv.style.display = "none";
     let congratulationsMessage = document.createElement("h1");
     congratulationsMessage.className = "congratulationsmessage";
@@ -52,9 +52,9 @@ function sendAnswer(data) {
     playAgainButton.innerText = "Play Again";
 
     playAgainButton.addEventListener("click", () => {
-      gameBoardDiv.style.display = "block";
       playAgainMessage.style.display = "none";
       playAgainButton.style.display = "none";
+      gameBoardDiv.style.display = "block";
     });
     document.body.appendChild(playAgainButton);
   }

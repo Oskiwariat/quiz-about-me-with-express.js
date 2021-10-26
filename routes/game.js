@@ -10,7 +10,7 @@ function gameRoute(app) {
       correctAnswer: 3,
     },
     {
-      question: "Is programming cool?",
+      question: "Do you think that programming is cool for me?",
       answers: [
         "Yes on average",
         "I don't think so",
@@ -28,6 +28,31 @@ function gameRoute(app) {
         "Lionel Messi",
       ],
       correctAnswer: 3,
+    },
+    {
+      question: "Which colour is my favourite",
+      answers: ["Red", "Pink", "Black", "White"],
+      correctAnswer: 2,
+    },
+    {
+      question: "When did I start learning programming?",
+      answers: [
+        "1 year 3 months ago",
+        "10 months ago",
+        "2 years ago",
+        "7 months ago",
+      ],
+      correctAnswer: 3,
+    },
+    {
+      question: "Why can't I continue my football adventure?",
+      answers: [
+        "I'm lazy",
+        "I'm bad",
+        "I have heart disease",
+        "Clubs don't want me",
+      ],
+      correctAnswer: 2,
     },
   ];
 

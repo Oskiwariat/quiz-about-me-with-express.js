@@ -1,14 +1,122 @@
 * {
-  /* margin: 0;
+  margin: 0;
   padding: 0;
-  box-sizing: border-box; */
-  font-family: arial;
-}
-h1 {
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  background: linear-gradient(90deg, red, blue);
 }
 
-button {
+body {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+div#game-board {
+  position: absolute;
+  padding: 40px;
+  opacity: 0.6;
+  height: 820px;
+  width: 1080px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+  border-radius: 10%;
+  border: 1px solid white;
+}
+
+div#game-board:hover {
+  opacity: 1;
+  border: 3px solid white;
   cursor: pointer;
+  height: 820px;
+  width: 1150px;
+  border-radius: 10%;
+}
+
+h1#gametitle {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 50px;
+  color: white;
+  margin-top: 175px;
+  margin-bottom: 50px;
+}
+
+h3#h3question {
+  margin-bottom: 35px;
+  font-size: 28px;
+  color: white;
+}
+
+button.answer-btn {
+  padding: 10px;
+  border: 2px solid white;
+  text-transform: uppercase;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  transition: 0.4s;
+  margin-right: 15px;
+}
+
+button.answer-btn:hover {
+  background: white;
+  color: black;
+}
+
+h2#correct-answers {
+  color: white;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
+
+h1.congratulationsmessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+  padding: 40px;
+  border: 3px solid white;
+}
+
+h1.playagainmessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 3px solid white;
+}
+
+button.playagainbutton {
+  position: absolute;
+  top: 63.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 2px solid white;
+  text-transform: uppercase;
+  color: white;
+  font-size: 25px;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+button.playagainbutton:hover {
+  background: white;
+  color: black;
 }
