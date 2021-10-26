@@ -1,8 +1,10 @@
 let h3question = document.querySelector("#h3question");
 let goodAnswersCounter = document.querySelector("#good-answers");
 let gameBoardDiv = document.querySelector("#game-board");
-let fiftyFiftyButton = document.querySelector("#fiftyfifty");
 let lifeLinesDiv = document.querySelector("#lifelines");
+let fiftyFiftyButton = document.querySelector("#fiftyfifty");
+let friendCallButton = document.querySelector("#friendcall");
+let audienceHelpButton = document.querySelector("#audiencehelp");
 
 function setNextQuestion(data) {
   let { question, answers } = data;
@@ -41,6 +43,9 @@ function sendAnswer(data) {
   if (isAnswerGood) {
     goodAnswersCounter.innerText = goodAnswers;
     showTheNextQuestion();
+    friendCallButton.style.opacity = "1";
+    audienceHelpButton.style.opacity = "1";
+    fiftyFiftyButton.style.opacity = "1";
   } else {
     lifeLinesDiv.style.display = "none";
     gameBoardDiv.style.display = "none";
@@ -84,16 +89,18 @@ for (const button of buttons) {
 }
 
 function fiftyFiftyButtonClick(data) {
-  const { isFiftyFiftyUsed } = data;
+  const { isFiftyFiftyUsed, text } = data;
   let buttons = document.querySelectorAll(".answer-btn");
-  buttons[0].innerText = "";
-  buttons[1].innerText = "";
-  fiftyFiftyButton.setAttribute("disabled", "true");
-  fiftyFiftyButton.style.opacity = "0";
 
   if (isFiftyFiftyUsed) {
     console.log("You use Fifty-fifty lifeline!");
+    buttons[0].innerText = "";
+    buttons[1].innerText = "";
+    friendCallButton.style.opacity = "0";
+    audienceHelpButton.style.opacity = "0";
+    fiftyFiftyButton.style.opacity = "0";
   }
+  console.log(text);
 }
 
 function fiftyFiftyLifeLine() {
@@ -107,3 +114,27 @@ function fiftyFiftyLifeLine() {
 }
 
 fiftyFiftyButton.addEventListener("click", fiftyFiftyLifeLine);
+
+function friendCallButtonClick(data) {
+  const { isFriendCallUsed, text } = data;
+
+  if (isFriendCallUsed) {
+    console.log("You use Friend Call lifeline!");
+    fiftyFiftyButton.style.opacity = "0";
+    audienceHelpButton.style.opacity = "0";
+    friendCallButton.style.opacity = "0";
+  }
+  console.log(text);
+}
+
+function friendCallLifeLine() {
+  fetch("/help/friendcall", {
+    method: "GET",
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      friendCallButtonClick(data);
+    });
+}
+
+friendCallButton.addEventListener("click", friendCallLifeLine);

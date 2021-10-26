@@ -2,6 +2,7 @@ function gameRoute(app) {
   let goodAnswers = 0;
   let isGameOver = false;
   let isFiftyFiftyUsed = false;
+  let isFriendCallUsed = false;
 
   const questions = [
     {
@@ -102,13 +103,37 @@ function gameRoute(app) {
     if (isFiftyFiftyUsed) {
       res.json({
         text: "To koło ratunkowe zostało już użyte",
-        disabled: true,
+        fiftyButtonDisabled: true,
       });
     }
     isFiftyFiftyUsed = true;
 
     res.json({
       isFiftyFiftyUsed,
+      text: "",
+    });
+  });
+
+  app.get("/help/friendcall", (req, res) => {
+    if (isFriendCallUsed) {
+      res.json({
+        text: "To koło ratunkowe zostało już użyte",
+        friendCallButtonDisabled: true,
+      });
+    }
+    isFriendCallUsed = true;
+
+    let theQuestions = questions[goodAnswers];
+
+    let { correctAnswer, answers } = theQuestions;
+
+    let doesFriendKnow = Math.random() < 0.5;
+
+    res.json({
+      isFriendCallUsed,
+      text: doesFriendKnow
+        ? `Jestem w 100% pewien, że prawidłowa odpowiedź to ${answers[correctAnswer]}`
+        : "Hmm no nie wiem, niestety ci nie pomogę",
     });
   });
 }
