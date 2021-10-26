@@ -1,6 +1,7 @@
 const express = require("express");
 const gameRoute = require("./routes/game");
 const path = require("path");
+const lifeLinesRoute = require("./routes/lifelines");
 
 const app = express();
 
